@@ -2,7 +2,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* 🌙 Enable Dark Mode */
 @layer base {
   :root {
     color-scheme: light;
@@ -12,7 +11,6 @@
   }
 }
 
-/* 🎨 Define your theme (replaces `theme.extend.colors`) */
 @theme {
   --color-white: #ffffff;
 
