@@ -35,4 +35,19 @@ const taskSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.Schema("Task", taskSchema);
+taskSchema.virtual("attachments", {
+  ref: "Attachment",
+  localField: "_id",
+  foreignField: "taskID",
+});
+
+taskSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "taskID",
+});
+
+taskSchema.set("toJSON", { virtuals: true });
+taskSchema.set("toObject", { virtuals: true });
+
+export default mongoose.model("Task", taskSchema);
