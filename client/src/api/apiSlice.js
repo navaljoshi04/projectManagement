@@ -1,7 +1,61 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
   reducerPath: "api",
-  endpoints: (builder) => ({}),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  tagTypes: ["Projects", "Tasks"],
+  endpoints: (builder) => ({
+    getProjects: builder.query({
+      query: () => "projects",
+      providesTags: ["Projects"],
+    }),
+
+    createProject: builder.mutation({
+      query: (project) => ({
+        url: "projects/create",
+        method: "POST",
+        body: project,
+      }),
+      invalidatesTags: ["Projects"],
+    }),
+
+    getTasks: builder.query({
+      query: () => "tasks",
+      providesTags: (result) =>
+        result.task
+          ? [
+              ...result.map((task) => ({ type: "Tasks", id: task._id })),
+              { type: "Tasks", id: "LIST" },
+            ]
+          : [{ type: "Tasks", id: "LIST" }],
+    }),
+
+    createTask: builder.mutation({
+      query: (task) => ({
+        url: "tasks/create",
+        method: "POST",
+        body: task,
+      }),
+      invalidatesTags: ["Tasks"],
+    }),
+
+    updateTask: builder.mutation({
+      query: ({ taskID, status }) => ({
+        url: `tasks/${taskID}/status`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: (result, error, { taskID }) => [
+        { type: "Tasks", id: taskID },
+      ],
+    }),
+  }),
 });
+
+export const {
+  useGetProjectsQuery,
+  useCreateProjectMutation,
+  useGetTasksQuery,
+  useCreateTaskMutation,
+  useUpdateTaskMutation,
+} = api;
