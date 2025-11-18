@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectWithDB from "./config/database.js";
 import projectRoutes from "./routes/projectRoutes.js";
+import cors from "cors";
 import taskRoutes from "./routes/taskRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
@@ -11,6 +12,12 @@ const app = express();
 dotenv.config();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use("/projects", projectRoutes);
 app.use("/tasks", taskRoutes);
 app.use("/user", userRoutes);

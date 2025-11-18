@@ -20,12 +20,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setIsSidebarCollapsed } from "../slices/uiSlices";
+import { useGetProjectsQuery } from "../api/apiSlice";
 
 const Sidebar = () => {
   const [showProject, setShowProject] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
 
   const dispatch = useDispatch();
+  const { data } = useGetProjectsQuery();
   const isSidebarCollapsed = useSelector(
     (state) => state.ui.isSidebarCollapsed
   );
@@ -83,6 +85,17 @@ const Sidebar = () => {
             <ChevronDown className="h-5 w-5" />
           )}
         </button>
+
+        {showProject &&
+          data?.projects.map((project) => (
+            <SideBarLinks
+              key={project._id}
+              icon={Briefcase}
+              label={project.name}
+              href={`/projects/${project._id}`}
+            />
+          ))}
+
         <button
           onClick={() => setShowPriority((prev) => !prev)}
           className="flex w-full items-center justify-between px-8 py-3

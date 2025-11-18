@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
-
+import { Outlet } from "react-router-dom";
 const Dashboard = () => {
   const isSidebarCollapsed = useSelector(
     (state) => state.ui.isSidebarCollapsed
@@ -26,6 +26,9 @@ const Dashboard = () => {
         } flex-col`}
       >
         <Navbar />
+        <div>
+          <Outlet />
+        </div>
       </main>
     </div>
   );
