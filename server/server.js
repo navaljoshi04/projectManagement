@@ -6,6 +6,8 @@ import cors from "cors";
 import taskRoutes from "./routes/taskRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
+import "./models/Attachment.js";
+import "./models/Comments.js";
 
 const app = express();
 

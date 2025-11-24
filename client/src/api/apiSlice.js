@@ -24,7 +24,7 @@ export const api = createApi({
       providesTags: (result) =>
         result.task
           ? [
-              ...result.map((task) => ({ type: "Tasks", id: task._id })),
+              ...result.task.map((task) => ({ type: "Tasks", id: task._id })),
               { type: "Tasks", id: "LIST" },
             ]
           : [{ type: "Tasks", id: "LIST" }],
