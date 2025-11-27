@@ -15,6 +15,7 @@
     "@mui/material": "^7.3.5",
     "@mui/x-data-grid": "^8.17.0",
     "@reduxjs/toolkit": "^2.10.1",
+    "@syncfusion/ej2-react-gantt": "^31.2.15",
     "@tailwindcss/vite": "^4.1.16",
     "axios": "^1.13.2",
     "date-fns": "^4.1.0",

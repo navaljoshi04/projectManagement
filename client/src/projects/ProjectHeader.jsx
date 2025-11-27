@@ -13,43 +13,27 @@ const ProjectHeader = ({ activeTab, setActiveTab }) => {
         <div className="flex flex-1 items-center gap-2 md:gap-4">
           <TabButton
             name="Board"
-            icon={
-              <Grid3X3
-                className="h-5 w-5"
-                setActiveTab={setActiveTab}
-                activeTab={activeTab}
-              />
-            }
+            icon={<Grid3X3 className="h-5 w-5" />}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
           />
           <TabButton
             name="List"
-            icon={
-              <List
-                className="h-5 w-5"
-                setActiveTab={setActiveTab}
-                activeTab={activeTab}
-              />
-            }
+            icon={<List className="h-5 w-5" />}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
           />
           <TabButton
             name="Timeline"
-            icon={
-              <Clock
-                className="h-5 w-5"
-                setActiveTab={setActiveTab}
-                activeTab={activeTab}
-              />
-            }
+            icon={<Clock className="h-5 w-5" />}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
           />
           <TabButton
             name="Table"
-            icon={
-              <Table
-                className="h-5 w-5"
-                setActiveTab={setActiveTab}
-                activeTab={activeTab}
-              />
-            }
+            icon={<Table className="h-5 w-5" />}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
           />
         </div>
         <div className="flex items-center gap-2">

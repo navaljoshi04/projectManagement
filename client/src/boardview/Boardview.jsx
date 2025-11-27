@@ -2,7 +2,7 @@ import React from "react";
 import { useGetTasksQuery, useUpdateTaskMutation } from "../api/apiSlice";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { EllipsisVertical, Plus } from "lucide-react";
+import { EllipsisVertical, MessageSquareMore, Plus } from "lucide-react";
 import { format } from "date-fns";
 
 const taskStatus = ["To Do", "Work In Progress", "Under Review", "Completed"];
@@ -186,8 +186,37 @@ const Task = ({ task }) => {
         <p className="text-sm text-gray-600 dark:text-neutral-500">
           {task.description}
         </p>
-        <div>
-          
+        <div className="mt-4 border-t border-gray-200 dark:border-stroke-dark ">
+          <div className="mt-3 flex items-center justify-between ">
+            <div className="flex -space-x-1.5 overflow-hidden ">
+              {task.assignee && (
+                <img
+                  key={task.assignee.userID}
+                  src={`/${task.assignee.profilePictureUrl}`}
+                  alt={task.assignee.username}
+                  width={30}
+                  height={30}
+                  className="h-8 w-8 rounded-full border-white object-cover dark:border-dark-secondary "
+                />
+              )}
+              {task.author && (
+                <img
+                  key={task.author.userID}
+                  src={`/${task.author.profilePictureUrl}`}
+                  alt={task.author.username}
+                  width={30}
+                  height={30}
+                  className="h-8 w-8 rounded-full border-white object-cover dark:border-dark-secondary "
+                />
+              )}
+            </div>
+            <div className="flex items-center text-gray-500 dark:text-neutral-500">
+              <MessageSquareMore size={20} />
+              <span className="ml-1 text-sm dark:text-neutral-400">
+                {numberOfComments}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

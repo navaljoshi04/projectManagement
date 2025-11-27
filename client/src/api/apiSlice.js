@@ -22,7 +22,7 @@ export const api = createApi({
     getTasks: builder.query({
       query: (projectID) => `tasks?projectID=${projectID}`,
       providesTags: (result) =>
-        result.task
+        result?.task
           ? [
               ...result.task.map((task) => ({ type: "Tasks", id: task._id })),
               { type: "Tasks", id: "LIST" },
